@@ -1,0 +1,18 @@
+#Tener en cuenta los espaciados en yml
+version: "3.8"
+# Estructura declarativa donde decimos que servicios tiene nuestra aplicacion
+
+#Indica servicios q componen nuestra app son las distintas partes o componentes
+#que tiene nuestra app para ejecutarse correctamente
+services:
+  app: #Servicio de app
+    image: platziapp #imagen que vamos a usar para los contenedores de este servicio
+    environment: #variables de entorno
+      MONGO_URL: "mongodb://db:27017/test"
+    depends_on: #El servicio app va a depender del servicio db
+      - db
+    ports:
+      - "3000:3000" #<puerto_maquina_anfitriona>:<puerto_container>
+
+  db: #Servicio de db
+    image: mongo
