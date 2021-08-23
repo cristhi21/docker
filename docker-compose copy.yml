@@ -13,6 +13,12 @@ services:
       - db
     ports:
       - "3000:3000" #<puerto_maquina_anfitriona>:<puerto_container>
+    #Agregar un volumen a mi servicio
+    volumes: 
+      - .:/usr/src/
+      - /usr/src/node_modules
+    #Hacer override o cambiar comando por defecto para trabajar con nodemon
+    command: npx nodemon --legacy-watch index.js
 
   db: #Servicio de db
     image: mongo
